@@ -69,10 +69,28 @@ def kuningatar(heppa,nn):
     
 
 
-def testaa(heppa,poyta,nn):
-
-    laskin = 0
+def toimimattomat(nn,kierros):
     
+    # Tehdaan dictionary
+    poyta = {}
+    koordinaatit=[]
+
+    #Indeksointi 
+    # Ajatellaan koordinaatit ihan normi koordinaatteina (x,y) ja kasvaa isompaan päin eli oikealle ja ylös
+    for ii in range(nn):                   
+        for jj in range(nn):
+            koordinaatit.append((ii, jj))
+    #print(koordinaatit,len(koordinaatit))
+
+    #Tehdään hepan paikkaan heppa-muuttuja
+    heppa = koordinaatit[kierros]
+    #print(heppa)
+
+    for ind in koordinaatit:
+        poyta[ind] = 1          # Alustetaan kaikki potenttiaalisiksi paikoiksi 
+                                    # arvot 1 = mahdollinen, 0 = ei mahdollinen
+    
+
     # Hepan moovit
     # Hepan ruutu varattu
     poyta[heppa] = 0
@@ -86,7 +104,10 @@ def testaa(heppa,poyta,nn):
     rouvamoovit = kuningatar(heppa,nn)
     for ii in range(len(rouvamoovit)):  # Tägätään hepan mahdolliset ruudut ei-potenttiialisiksi paikoiksi
         poyta[rouvamoovit[ii]]=0
-    return
+
+    return sum(poyta.values())
+   
+
 
 
 def count(nn):
@@ -95,36 +116,19 @@ def count(nn):
     if nn<=3:
         return 0
 
-    # Tehdaan dictionary
-    pelipoyta = {}
-    koordinaatit=[]
-    
-
-    #Indeksointi 
-    # Ajatellaan koordinaatit ihan normi koordinaatteina (x,y) ja kasvaa isompaan päin eli oikealle ja ylös
-    for ii in range(nn):                   
-        for jj in range(nn):
-            koordinaatit.append((ii, jj))
-    #print(koordinaatit,len(koordinaatit))
-
-    
-    for ind in koordinaatit:
-        pelipoyta[ind] = 1          # Alustetaan kaikki potenttiaalisiksi paikoiksi 
-                                    # arvot 1 = mahdollinen, 0 = ei mahdollinen
-    
-    #print(pelipoyta)
-
-    # Seuraavaksi testataan mitkä paikat oikeasti sopivat
+    # Seuraavaksi testataan mitkä paikat oikeasti sopivat, käydään läpi yksi mahdollinen tapa laittaa ensin
+    # heppa sitten kuningatar
     laskin=0
-    for indeksi in range(1):   #len(koordinaatit)):
-        testaa(koordinaatit[indeksi],pelipoyta,nn)  
+    for indeksi in range(nn*nn):
+        laskin=laskin+toimimattomat(nn,indeksi)  
     #print(laskin)
+    return laskin
 
  
     
 
 if __name__ == "__main__":
-    #print(count(3)) # 0
+    print(count(3)) # 0
     print(count(4)) # 40
-    #print(count(5)) # 184
+    print(count(5)) # 184
     
