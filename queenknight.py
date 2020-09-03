@@ -48,9 +48,9 @@ def testaa(heppa,poyta,s0_ind,nn):
     s_pera=s0_ind                           # tokavika sarake
     for ii in range(len(s_pera)):
         s_pera[ii] = s_pera[ii]+nn-1  
-    print(s_pera)
+    #print(s_pera)
 
-   if heppa in s0_ind:              # heppa vas reunalla -> poista vas + yla ja ala 
+    if heppa in s0_ind:              # heppa vas reunalla -> poista vas + yla ja ala 
         ignoorauslista[2] = True
         ignoorauslista[3] = True
         ignoorauslista[0] = True    
@@ -67,13 +67,21 @@ def testaa(heppa,poyta,s0_ind,nn):
         ignoorauslista[6] = True    # heppa oik reunalla yhden ruudun päässä -> poista oik
         ignoorauslista[7] = True
 
-
-
     # määrittele sopimattomat paikat kun heppa paikassa heppa eli heppa ja mahdolliset ruudut x0-24
-    sopimattomat = heppahyokkaus(heppa,nn)
-    #print(sopimattomat)
+    heppa_uhkaa = heppahyokkaus(heppa,nn)
+
     #määrittele sopimattomat paikat kun heppa paikassa heppa ja sijoitetaan kuningatarta
-    
+    # heppa
+    poyta[heppa]=0
+
+    #hepan hyökkäysmahkut
+    for ii in range(len(ignoorauslista)):
+        if ignoorauslista[ii] == False:
+            print(heppa,heppa_uhkaa[ii])
+            #poyta[heppa_uhkaa[ii-1]]=0
+
+    #print(poyta)
+    print('kierros')
     return laskin
 
 
@@ -89,7 +97,8 @@ def count(nn):
     ekat_ind=[]
     for ii in range(nn): 
         ekat_ind.append(ii*nn)
-    print(ekat_ind)
+        #print('kierros')
+    #print(ekat_ind)
     
     
     laskin=0
