@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- 
 
-from array import array
+#from array import array
 
 #def kuningatar(heppa,nn,sopimattomat):
 
@@ -19,12 +19,62 @@ from array import array
 #     oik2 = (heppa+nn+2)   #7  =oik ala
     
 #     return [yla1,yla2,vas1,vas2,ala1,ala2,oik1,oik2]
+
+def hepanhyokimys(heppa,nn):
+   
+    # Tehdään lista mahdollisille ruuduille
+    # x-suuntaan 2 ja   y+1 /y-1
+    # x-suuntaan 1 ja   y+2 /y-2
+    # ed -x suuntaan
+    heppakoordi = [
+    ((heppa[0] + 2),(heppa[1] + 1)), 
+    ((heppa[0] + 2),(heppa[1] - 1)),
+    ((heppa[0] + 1),(heppa[1] + 2)),
+    ((heppa[0] + 1),(heppa[1] - 2)),
+    ((heppa[0] - 2),(heppa[1] + 1)),
+    ((heppa[0] - 2),(heppa[1] - 1)),
+    ((heppa[0] - 1),(heppa[1] + 2)),
+    ((heppa[0] - 1),(heppa[1] - 2))]
+
+    # Jätetään laudan ulkopuoliset koordinaatit pois
+    popperit=[]
+    for ii in range(len(heppakoordi)):
+        if (heppakoordi[ii][0]<0) or (heppakoordi[ii][1]<0):   # Reunan ulkouolella olevat
+            popperit.append(ii)
+        elif (heppakoordi[ii][0]>nn-1) or (heppakoordi[ii][1]>nn-1):
+            popperit.append(ii)
+
+    popperit=sorted(set(popperit),reverse=True)             # Poppaillaan perästä että ei sekoiteta indeksejä
+    print(popperit)
+    for poppaukset in popperit:
+        #print(poppaukset)
+        heppakoordi.pop(poppaukset)
+    
+    return heppakoordi
+
+    
     
 
 
-# def testaa(heppa,poyta,s0_ind,nn):
+def testaa(heppa,poyta,nn):
 
-#     laskin=0
+    laskin = 0
+    
+    # Hepan moovit
+    # Hepan ruutu varattu
+    #poyta[heppa] = 0
+    #print(poyta)
+    #Hepan hyökkäysruudut
+    hepanhyokimys(heppa,nn)
+    
+
+    #for paikat in poyta.keys():
+    #    if paikat[0] == 0:
+    #        print(paikat)
+        #print (avain,arvo)
+    
+
+    
 
 #     #erikoistapaukset reunoilla
 #     ignoorauslista = [False]*8
@@ -82,7 +132,7 @@ from array import array
 
 #     #print(poyta)
 #     print('kierros')
-#     return laskin
+    return
 
 
 def count(nn):
@@ -91,46 +141,29 @@ def count(nn):
     if nn<=3:
         return 0
 
-    #paikat=array('I',[1]*nn*nn)     # nn*nn matriisi pötkönä
-
-    # ekan sarakkeen indeksit
-    # ekat_ind=[]
-    # for ii in range(nn): 
-    #     ekat_ind.append(ii*nn)
-        #print('kierros')
-    #print(ekat_ind)
-
-
-    #koordinaatit = (x_suunta,y_suunta)
-    #print(koordinaatit)
-
     # Tehdaan dictionary
     pelipoyta = {}
     koordinaatit=[]
     
 
     #Indeksointi 
-    for ii in range(nn):
+    # Ajatellaan koordinaatit ihan normi koordinaatteina (x,y) ja kasvaa isompaan päin eli oikealle ja ylös
+    for ii in range(nn):                   
         for jj in range(nn):
             koordinaatit.append((ii, jj))
     #print(koordinaatit,len(koordinaatit))
 
+    
     for ind in koordinaatit:
-        pelipoyta[ind] = 1
+        pelipoyta[ind] = 1          # Alustetaan kaikki potenttiaalisiksi paikoiksi 
+                                    # arvot 1 = mahdollinen, 0 = ei mahdollinen
     
-    print(pelipoyta)
-    
+    #print(pelipoyta)
 
-    
-            
-
-    
-    
+    # Seuraavaksi testataan mitkä paikat oikeasti sopivat
     laskin=0
-    #for testipaikka in range(len(paikat)):
-        #print(testipaikka)
-        #laskin=laskin+testaa(testipaikka,paikat,ekat_ind,nn)  
-        #laskin+=1
+    for indeksi in range(1):   #len(koordinaatit)):
+        testaa(koordinaatit[indeksi],pelipoyta,nn)  
     #print(laskin)
 
  
