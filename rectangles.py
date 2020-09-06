@@ -34,13 +34,13 @@ def onko_piste_sis(piste,nkulmio_vy,nkulmio_oa, reunalla_mukana=False):
 #                 n_onko = True
 ##    #return n_onko
 
-def yhteinen(An_sis_Bpist,Bn_sis_Apist,A_pist, B_pist):
-    if any(An_sis_Bpist):
-        if all(An_sis_Bpist): # kokonaan sisällä
+# def yhteinen(An_sis_Bpist,Bn_sis_Apist,A_pist, B_pist):
+#     if any(An_sis_Bpist):
+#         if all(An_sis_Bpist): # kokonaan sisällä
         
-        elif An_sis_Bpist[]
+#         elif An_sis_Bpist[]
 
-    else:
+#     else:
         
 
 
@@ -81,88 +81,61 @@ def testaa (An_kulmio_vy,An_kulmio_oa,Bn_kulmio_vy,Bn_kulmio_oa):
     #if any([An_sis_vy,An_sis_oa,Bn_sis_vy,Bn_sis_oa]):
     #    print('hei')
 
+# TODO
+# Isoin ala -> summaan suoraan
+# Seuraavaksi isoin ala testaa mikä isomman ulkopuolella olevaa osaa
+# Laske ulkopuolinen osa
+# Pienin osa, testaa mikä kummankin ulkopuolella olevaa osaa. 
+
+def suurimman_ulkopuolella(Avy,Aoa,Bvy,Boa,Cvy,Coa):
+    #Leikkaako A:n sivut pienempää nelikulmiota?
+
+
+
+
+    return 0
 
 
 
 def area(rec1, rec2, rec3):
+    # Etsii isoimman nelikulmion ja käyttää sen alaa pohjana
+    # Isoimman nelikulmion ulkopuolella oleva lisättävä ala lasketaan funktiossa
+    # Käytetään kulmille tuplea (x,y)
 
-    # TODO
-    # Määrittele ja Laske ala maksimialuelle A_max= (X_max-X-min)*(Y_max-Y_min).
-    # Laske yritelmän ala A_yritelmä = A_Rect1 + A_Rect2 + A_Rect3.
-    # Määrittele hukka-ala A_poisto.
-    # Jaa alue osapalasiin, kaikki reunat ja kaikki kulmat muodostovat pysty-vaaka viivat,
-    # jotka jakavat alueen. 
-    # Tee luuppi jonka sisällä testataan että onko A_max == A_yritelmä + A_poisto, ratkaisu
-    # saavutettu kun ovat. Anna silloin A_yritelmä tuloksena.  
-    # Testauksessa yksi kerrallan testataan onko osa-alue laatikoiden a,b,c sisällä vai ulkona.
-    # Vaihtoehdot voivat olla 
-    #   1) Ulkona -> Lisää alue hukkapalaan
-    #   2) 1-kertaisesti sisällä -> Älä tee mitään
-    #   3) 2-kertaisesti sisällä -> Ota alue pois yritelmästä kerran
-    #   4) 3-kertaisesti sisällä -> Ota alue pois yritelmästä kaksi kertaa
-    #---------------------------------------------
-    # Toinen täysin erilainen lähtökohta
-    # LÄHDE PALIKOIDEN GEOMETRIASTA LIIKKELLE
-    # Palikka A:n suhde B:hen voi olla
-        #   0) Toisen sisällä
-        #   1) Täysin samat
-        #   2) 2 Kulmaa yhdessä
-        #   3) 1 Kulma yhdessä
-        #   4) 1 Sivu yhdessä
-        #   5) 2 Kulmaa sisällä
-        #   6) 1 Kulma sissällä
-        #   7) Ristikkäin
-        #   8) Toistensa ulkopuolella
-    # Tässä vaihtoehdossa pitäisi vertailla aika paljon onko kulmat toistensa sisällä vai ei
-    # toisessa tehdään isoa luuppia jolla lasketaan melko simppeliä laskua
-    # Tämä jälkimmäinen vaikuttaa haastavammalta toteuttaa, ylempi on simppeli, mutta raakaa laskemista ja voi olla
-    # että siinä kuluu liikaa aikaa. Jännin olisi tietty tehdä molemmat, mutta vois tällä viikolla kyllä muutakin tehdä. 
-    # Päätöksiä, päätöksiä...
-    # Yritetään tätä jälkimmäistä. 
-    # TODO
-    # 1 Laske palikoiden alat
-    # 2 Ota isoin "alustaksi" - palikka A
-    # 3 Testaa onko Palikka B:n vastakkaiset kulmat sisällä/raunoilla -> molemmat sisällä 
-    # -> palikka sisällä -> kokonaan B pois alasta
-    # Testaa loput kaikki tosi monet kulma/sivu vaihtehdot ja mieti mitä otetaan pois kokonaisalasta
-    # Sitten vaihda B:sijaan C käsittelyyn
-    # Lopuksi katso kumpi isompi ja ota se alustaksi ja katso onko sillä yhteisä osia toisen kanssa jotka poistetaan myös listasta
-    # Mä joko väsyn tai tää on muuten kyllä super työläs vaihtoehto, ehkä sittenkin yritän tuota ekaa vaihtoehtoa. 
-    # TODO
-    # No niin kolmas hybridi versio edellisitä, vielä hahmotteluasteella. Eli unohdetaan kokoala ja käytetään isointa nelikulmiota eka. 
-    # Lasketaan kaikkien kolmen pinta-alat
-    # Tehdään funktio onko sisällä joka toimii pisteelle ja nelikulmiolle. 
-    # Ja siitä laajennus/muunnos onko samat joka testaa onko alue nelikulmion sisällä. Tämä tehdään ottamalla molemmat viistokulmapisteet 
-    # ja testataan onko sisällä tai reunalla (molemmat tosi että on).
-     # Ensiksi tosin pitänee testata että kumpikaan pienistä ei ole kokonaan isomman/ toisensa sisällä. 
-    # Sitten otetaan suurin nelikulmio käsittelyyn. Katsotaan onko jokin viistokulmapisteistä sen sisällä, jos on nelikulmio jaetaan osiin.
-    # Osat käsitellään erikseen ja katsotaan onko osa päälekkäisiä kahden toisen nelikulmion kanssa. Jos on, osat vähennetään alkuperäisestä
-    # summasta. Sitten käsitellään samoin toisiksi suurin nelikulmio, mutta tällä kertaa testataan vaan kolmannen nelikulmion kanssa 
-    # yhteisalueiden varalle. 
-    # Viimeiseksi pitää vielä käsitellä mahdollinen ristinelikulmiotilanne. 
-    # No niin nyt on ainaskin hyvä suunnitelma olemassa. 
-    piste1vy = (rec1[0],rec1[1])
-    piste1oa = (rec1[2],rec1[3])
-    piste2vy =  (rec2[0],rec2[1])
-    piste2oa =  (rec2[2],rec2[3])
-    piste3vy =  (rec3[0],rec3[1])
-    piste3oa =  (rec3[2],rec3[3])
+    #piste1vy = (rec1[0],rec1[1])
+    #piste1oa = (rec1[2],rec1[3])
+    #piste2vy =  (rec2[0],rec2[1])
+    #piste2oa =  (rec2[2],rec2[3])
+    #piste3vy =  (rec3[0],rec3[1])
+    #piste3oa =  (rec3[2],rec3[3])
 
-    ala1=ala(piste1vy,piste1oa)
-    ala2=ala(piste2vy,piste2oa)
-    ala3=ala(piste3vy,piste3oa)
+    ala1=ala((rec1[0],rec1[1]),(rec1[2],rec1[3]))
+    ala2=ala((rec2[0],rec2[1]),(rec2[2],rec2[3]))
+    ala3=ala((rec3[0],rec3[1]),(rec3[2],rec3[3]))
 
-    Yhteisala = ala1+ala2+ala3
+    Yhteisala = 0
 
-    #Alat = [ala1,ala2,ala3]
-    #Nelikulmiot = [rec1,rec2,rec3]
-    #print(Alat.index(max(Alat)))        # Indeksi isoimmalle alalle
-    #print(Nelikulmiot[Alat.index(max(Alat))])  # Isoin nelikulmio
+    Alat = [ala1,ala2,ala3]
+    jarjestys = sorted(range(len(Alat)), key=lambda k: Alat[k],reverse=True)
+    #print(Jarjestys, Alat)
 
 
-    testaa(piste1vy,piste1oa,piste2vy,piste2oa)  # 1 ja 2
-    testaa(piste1vy,piste1oa,piste3vy,piste3oa)  # 1 ja 3
-    testaa(piste2vy,piste2oa,piste3vy,piste3oa)  # 2 ja 3
+    if jarjestys[0]== 0:
+        if jarjestys[1] == 1:
+            Yhteisala = ala1 + suurimman_ulkopuolella((rec1[0],rec1[1]),(rec1[2],rec1[3]),(rec2[0],rec2[1]),(rec2[2],rec2[3]),(rec3[0],rec3[1]),(rec3[2],rec3[3]))
+        else:
+            Yhteisala = ala1 + suurimman_ulkopuolella((rec1[0],rec1[1]),(rec1[2],rec1[3]),(rec3[0],rec3[1]),(rec3[2],rec3[3]),(rec2[0],rec2[1]),(rec2[2],rec2[3]))
+    elif jarjestys[0] == 1:
+        if jarjestys[1] == 0:
+            Yhteisala = ala2+ suurimman_ulkopuolella((rec2[0],rec2[1]),(rec2[2],rec2[3]),(rec1[0],rec1[1]),(rec1[2],rec1[3]),(rec3[0],rec3[1]),(rec3[2],rec3[3]))
+        else:
+            Yhteisala = ala2+ suurimman_ulkopuolella((rec2[0],rec2[1]),(rec2[2],rec2[3]),(rec3[0],rec3[1]),(rec3[2],rec3[3]),(rec1[0],rec1[1]),(rec1[2],rec1[3]))
+    else: #jarjestys[0] == 2
+        if jarjestys[1] == 0:
+            Yhteisala= ala3 + suurimman_ulkopuolella((rec3[0],rec3[1]),(rec3[2],rec3[3]),(rec1[0],rec1[1]),(rec1[2],rec1[3]),(rec2[0],rec2[1]),(rec2[2],rec2[3]))
+        else:
+            Yhteisala= ala3 + suurimman_ulkopuolella((rec3[0],rec3[1]),(rec3[2],rec3[3]),(rec2[0],rec2[1]),(rec2[2],rec2[3]),(rec1[0],rec1[1]),(rec1[2],rec1[3]))
+
 
     return Yhteisala
 
