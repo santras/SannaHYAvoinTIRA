@@ -5,14 +5,81 @@ def ala(nurkka_vy,nurkka_oa):
     ala=abs((nurkka_vy[0] - nurkka_oa[0])*(nurkka_vy[1]-nurkka_oa[1])) 
     return ala
 
-def onko_sisalla(piste,nkulmio_vy,nkulmio_oa):
+def onko_piste_sis(piste,nkulmio_vy,nkulmio_oa, reunalla_mukana=False):
     onko = False
-    if piste[0] < nkulmio_oa[0] and piste[0] > nkulmio_vy [0]:
-        if piste[1] < nkulmio_vy[1] and piste[1] > nkulmio_oa[1] :
-            onko == True
 
-return onko
+    if reunalla_mukana:
+        if piste[0] <= nkulmio_oa[0] and piste[0] >= nkulmio_vy [0]:
+            if piste[1] <= nkulmio_vy[1] and piste[1] >= nkulmio_oa[1] :
+                onko = True
+                
+    else:
+        if piste[0] < nkulmio_oa[0] and piste[0] > nkulmio_vy [0]:
+            if piste[1] < nkulmio_vy[1] and piste[1] > nkulmio_oa[1] :
+                onko = True
+                #print("hei")
+    return onko
       
+# def onko_nkulm_sis(An_kulmio_vy,An_kulmio_oa,Bn_kulmio_vy,Bn_kulmio_oa, reunalla_mukana=False): # Testaa onko jälkimmäinen ensimmäisen sisällä
+#     n_onko = False
+
+#     if reunalla_mukana:
+#         if onko_piste_sis(Bn_kulmio_vy,An_kulmio_vy,An_kulmio_oa,True):
+#             if onko_piste_sis(Bn_kulmio_oa,An_kulmio_vy,An_kulmio_oa,True):
+#                 n_onko = True
+
+#     else:
+#         if onko_piste_sis(Bn_kulmio_vy,An_kulmio_vy,An_kulmio_oa,True):
+#             if onko_piste_sis(Bn_kulmio_oa,An_kulmio_vy,An_kulmio_oa,True):
+#                 n_onko = True
+##    #return n_onko
+
+def yhteinen(An_sis_Bpist,Bn_sis_Apist,A_pist, B_pist):
+    if any(An_sis_Bpist):
+        if all(An_sis_Bpist): # kokonaan sisällä
+        
+        elif An_sis_Bpist[]
+
+    else:
+        
+
+
+
+def testaa (An_kulmio_vy,An_kulmio_oa,Bn_kulmio_vy,Bn_kulmio_oa):
+
+    # Onko jomman kumman kulma toisen sisällä kokonaan?
+    A_pist = [An_kulmio_vy,(An_kulmio_vy[0],An_kulmio_oa[1]), An_kulmio_oa, (An_kulmio_oa[0], An_kulmio_vy[1])]
+    #print(A_pist)
+    B_pist = [Bn_kulmio_vy,(Bn_kulmio_vy[0],Bn_kulmio_oa[1]), Bn_kulmio_oa, (Bn_kulmio_oa[0], Bn_kulmio_vy[1])]
+    #print(B_pist)
+    An_sis_Bpist = []
+    Bn_sis_Apist = []
+
+    # A nelikulmio, B pisteet
+    for ii in range(len(B_pist)):
+        if (onko_piste_sis(B_pist[ii],An_kulmio_vy,An_kulmio_oa)):
+            An_sis_Bpist.append(True)
+        else:
+            An_sis_Bpist.append(False)
+
+    # A nelikulmio, B pisteet
+    for ii in range(len(A_pist)):
+        if (onko_piste_sis(A_pist[ii],Bn_kulmio_vy,Bn_kulmio_oa)):
+            Bn_sis_Apist.append(True)
+        else:
+            Bn_sis_Apist.append(False)
+
+    #print(An_sis_Bpist, Bn_sis_Apist)
+    if any(An_sis_Bpist) or any(Bn_sis_Apist):
+        yhteinen(An_sis_Bpist,Bn_sis_Apist,A_pist, B_pist)
+
+    else:
+        return False, 0, (0,0),(0,0)        # onko sisäkkäin, sisäkkäin ala, sisäkkäin n_kulm
+
+
+    #print([An_sis_vy,An_sis_oa,Bn_sis_vy,Bn_sis_oa])
+    #if any([An_sis_vy,An_sis_oa,Bn_sis_vy,Bn_sis_oa]):
+    #    print('hei')
 
 
 
@@ -87,11 +154,15 @@ def area(rec1, rec2, rec3):
 
     Yhteisala = ala1+ala2+ala3
 
-    Alat = [ala1,ala2,ala3]
-    Nelikulmiot = [rec1,rec2,rec3]
-    print(Alat.index(max(Alat)))        # Indeksi isoimmalle alalle
-    print(Nelikulmiot[Alat.index(max(Alat))])  # Isoin nelikulmio
+    #Alat = [ala1,ala2,ala3]
+    #Nelikulmiot = [rec1,rec2,rec3]
+    #print(Alat.index(max(Alat)))        # Indeksi isoimmalle alalle
+    #print(Nelikulmiot[Alat.index(max(Alat))])  # Isoin nelikulmio
 
+
+    testaa(piste1vy,piste1oa,piste2vy,piste2oa)  # 1 ja 2
+    testaa(piste1vy,piste1oa,piste3vy,piste3oa)  # 1 ja 3
+    testaa(piste2vy,piste2oa,piste3vy,piste3oa)  # 2 ja 3
 
     return Yhteisala
 
