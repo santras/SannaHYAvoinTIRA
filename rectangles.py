@@ -1,6 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- 
 
+def ala(nurkka_vy,nurkka_oa):  
+    ala=abs((nurkka_vy[0] - nurkka_oa[0])*(nurkka_vy[1]-nurkka_oa[1])) 
+    return ala
+
+def onko_sisalla(piste,nkulmio_vy,nkulmio_oa):
+    onko = False
+    if piste[0] < nkulmio_oa[0] and piste[0] > nkulmio_vy [0]:
+        if piste[1] < nkulmio_vy[1] and piste[1] > nkulmio_oa[1] :
+            onko == True
+
+return onko
+      
+
+
 
 
 def area(rec1, rec2, rec3):
@@ -60,14 +74,32 @@ def area(rec1, rec2, rec3):
     # yhteisalueiden varalle. 
     # Viimeiseksi pitää vielä käsitellä mahdollinen ristinelikulmiotilanne. 
     # No niin nyt on ainaskin hyvä suunnitelma olemassa. 
+    piste1vy = (rec1[0],rec1[1])
+    piste1oa = (rec1[2],rec1[3])
+    piste2vy =  (rec2[0],rec2[1])
+    piste2oa =  (rec2[2],rec2[3])
+    piste3vy =  (rec3[0],rec3[1])
+    piste3oa =  (rec3[2],rec3[3])
 
-    
+    ala1=ala(piste1vy,piste1oa)
+    ala2=ala(piste2vy,piste2oa)
+    ala3=ala(piste3vy,piste3oa)
+
+    Yhteisala = ala1+ala2+ala3
+
+    Alat = [ala1,ala2,ala3]
+    Nelikulmiot = [rec1,rec2,rec3]
+    print(Alat.index(max(Alat)))        # Indeksi isoimmalle alalle
+    print(Nelikulmiot[Alat.index(max(Alat))])  # Isoin nelikulmio
+
+
+    return Yhteisala
 
 
 
 
 if __name__ == "__main__":
-    rec1 = (-1,1,1,-1)
+    rec1 = (-1,1,1,-1)  # vas ylänurkka, oik alanurkka
     rec2 = (0,3,2,0)
     rec3 = (0,2,3,-2)
     print(area(rec1,rec2,rec3)) # 16
