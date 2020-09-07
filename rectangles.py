@@ -81,14 +81,35 @@ def testaa (An_kulmio_vy,An_kulmio_oa,Bn_kulmio_vy,Bn_kulmio_oa):
     #if any([An_sis_vy,An_sis_oa,Bn_sis_vy,Bn_sis_oa]):
     #    print('hei')
 
-# TODO
-# Isoin ala -> summaan suoraan
-# Seuraavaksi isoin ala testaa mikä isomman ulkopuolella olevaa osaa
-# Laske ulkopuolinen osa
-# Pienin osa, testaa mikä kummankin ulkopuolella olevaa osaa. 
+def leikkaako(Ivy, Ioa, Pvy, Poa):
+    #Leikkaako I:n sivut nelkulmion P osiin?
+    leikkaa = False
+    leikkaja_x=[]
+    leikkaaja_y=[]
+
+    if Ivy[0]<Poa[0] and Ivy[0]>Pvy[0]:
+        leikkaa =True
+        leikkaja_x.append(Ivy[0])
+    if Ioa[0]<Poa[0] and Ioa[0]>Pvy[0]:
+        leikkaa = True
+        leikkaja_x.append(Ioa[0])
+    if Ivy[1]<Pvy[1] and Ivy[1]<Poa[1]:
+        leikkaa = True
+        leikkaaja_y.append(Ivy[1])
+    if Ioa[1]<Pvy[1] and Ioa[1]<Poa[1]:
+        leikkaa = True
+        leikkaaja_y.append(Ioa[1])
+
+    return leikkaa, leikkaja_x, leikkaja_y
 
 def suurimman_ulkopuolella(Avy,Aoa,Bvy,Boa,Cvy,Coa):
     #Leikkaako A:n sivut pienempää nelikulmiota?
+        # Jos ei onko se isomman sisässä vai ulkopuolella?
+            # Jos ulkona -> lisää kokonaan ala
+            # Jos sisällä -> älä lisää mitään
+        # Jos leikkaa -> Pistä pienempi osiin ja katso osille edellinen (osia 2-4)
+    # C:lle tarkista sekä B:n että A:n leikkaukset
+
 
 
 
