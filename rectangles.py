@@ -137,27 +137,49 @@ def suurimman_ulkopuolella(Avy,Aoa,Bvy,Boa,Cvy,Coa):
 
     (leikkaa,leikkaajat_x,leikkaajat_y)=leikkaako(Avy,Aoa,Bvy,Boa)
     if not leikkaa:
-        print('hep')
+        #print('hep')
         # onko B A:n sisällä?
         if not (onko_piste_sis(Bvy,Avy,Aoa)):   # Tämä pistettä - onko sama kuin kulmio?
             B_ala=ala(Bvy,Boa)
     else:
         uudet_kulmiot=osittelu(Bvy,Boa,leikkaajat_x, leikkaajat_y)
         for ii in range(len(uudet_kulmiot)):
-            print(uudet_kulmiot[ii])
+            #print(uudet_kulmiot[ii][0],uudet_kulmiot[ii][1])
             sisallako = False
             sisallako = onko_piste_sis(uudet_kulmiot[ii][0],Avy,Aoa,True)
             if sisallako:
                 sisallako = onko_piste_sis(uudet_kulmiot[ii][1],Avy,Aoa,True)
-            #if not sisallako:
-            #    B_ala=B_ala+ala(uudet_kulmiot[ii][0])
+            if not sisallako:
+                B_ala=B_ala+ala(uudet_kulmiot[ii][0],uudet_kulmiot[ii][1])
+
+    #print(B_ala)
+
+    #Testataan A ja C (ja sitten B ja C)
+
+    (leikkaa,leikkaajat_x,leikkaajat_y)=leikkaako(Avy,Aoa,Cvy,Coa)
+    if not leikkaa:
+        #print('hep')
+        # onko C A:n sisällä?
+        if not (onko_piste_sis(Cvy,Avy,Aoa)):   # Tämä pistettä - onko sama kuin kulmio?
+            C_ala=ala(Cvy,Coa)
+    else:
+        uudet_kulmiot=osittelu(Cvy,Coa,leikkaajat_x, leikkaajat_y)
+        for ii in range(len(uudet_kulmiot)):
+            #print(uudet_kulmiot[ii][0],uudet_kulmiot[ii][1])
+            sisallako = False
+            sisallako = onko_piste_sis(uudet_kulmiot[ii][0],Avy,Aoa,True)
+            if sisallako:
+                sisallako = onko_piste_sis(uudet_kulmiot[ii][1],Avy,Aoa,True)
+            if not sisallako:
+                C_ala=C_ala+ala(uudet_kulmiot[ii][0],uudet_kulmiot[ii][1])
+
+
+    print(C_ala)
 
 
 
 
-
-
-    return 0
+    return B_ala+C_ala
 
 
 
