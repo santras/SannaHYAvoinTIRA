@@ -75,15 +75,19 @@ def osittelu(Nyv, Noa,xät,yyt):
 def testaa_leikkaukset(Eka_vy,Eka_oa,Toka_vy,Toka_oa, cb_testi=False, B_vy=(0,0), B_oa=(0,0)):
     # Testataan leikkaako Eka nelikulmio  Tokaa
     # Jos leikkaa, osiin jako, testaukset pikkuneliö kerrallaan onko Ekan sisällä
-    # Kun kutsutaan cb_testinä, tarkistaa myös leikkaukset B:n kanssa
+    # Kun kutsutaan cb_testinä, tarkistaa myös leikkaukset B:n kanssa               # EI leikkaa toista kertaa bc testissä
 
     Toka_ala = 0
+    #print('ennen leikkausta', Eka_vy,Eka_oa,Toka_vy,Toka_oa)
     (leikkaa,leikkaajat_x,leikkaajat_y)=leikkaako(Eka_vy,Eka_oa,Toka_vy,Toka_oa)
     #print('leikkaa',leikkaa,leikkaajat_x, leikkaajat_y)
     if not leikkaa:
-        #print('täällä',cb_testi,Eka_vy,Eka_oa,Toka_vy,Toka_oa)     
+        #print('täällä',cb_testi,Eka_vy,Eka_oa,Toka_vy,Toka_oa)     # Tästä puuttuu leikkaukset kun ei tarvi leikata A:n ja B:n välillä mutta pitäis B:n ja C:n välillä
         if not (nelikulmio_sisalla(Eka_vy,Eka_oa,Toka_vy,Toka_oa)):
-            Toka_ala = ala(Toka_vy,Toka_oa)
+            if not cb_testi:
+                Toka_ala = ala(Toka_vy,Toka_oa)
+            else:
+                Toka_ala = Toka_ala+testaa_leikkaukset(B_vy, B_oa, Toka_vy,Toka_oa) 
             #print('ala', Toka_ala)
     else:
         #print('nyt taalla',cb_testi,Eka_vy,Eka_oa,Toka_vy,Toka_oa,B_vy, B_oa)
@@ -190,5 +194,7 @@ if __name__ == "__main__":
     #rec2 =(0,3,2,0)
     #rec3 =(0,2,3,-2)
    
-
+#[0,1,2,-2]
+#[-1,3,3,2]
+#[-2,3,0,2]
    
