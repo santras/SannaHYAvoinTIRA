@@ -20,28 +20,18 @@ def onko_piste_sis(piste,nkulmio_vy,nkulmio_oa, reunalla_mukana=False):
                 #print("hei")
     return onko
       
-# def onko_nkulm_sis(An_kulmio_vy,An_kulmio_oa,Bn_kulmio_vy,Bn_kulmio_oa, reunalla_mukana=False): # Testaa onko jälkimmäinen ensimmäisen sisällä
-#     n_onko = False
+def nelikulmio_sisalla(Eka_vy,Eka_oa,Toka_vy_Toka_oa):
+    #onko samat
+    #onko sisäkkäin Toka Ekan sisällä
+    sisakkain= False
+    if Eka_vy == Toka_vy and Eka_oa == Toka_oa:
+        sisakkain = True
+    
+    elif Toka_oa[0]<=Eka_oa[0] and Toka_vy[0]>= Eka_vy[0]:
+        if Toka_vy[1]<=Eka_vy[1] and Toka_oa[1]>= Eka_oa[1]:
+            sisakkain = True
 
-#     if reunalla_mukana:
-#         if onko_piste_sis(Bn_kulmio_vy,An_kulmio_vy,An_kulmio_oa,True):
-#             if onko_piste_sis(Bn_kulmio_oa,An_kulmio_vy,An_kulmio_oa,True):
-#                 n_onko = True
-
-#     else:
-#         if onko_piste_sis(Bn_kulmio_vy,An_kulmio_vy,An_kulmio_oa,True):
-#             if onko_piste_sis(Bn_kulmio_oa,An_kulmio_vy,An_kulmio_oa,True):
-#                 n_onko = True
-##    #return n_onko
-
-# def yhteinen(An_sis_Bpist,Bn_sis_Apist,A_pist, B_pist):
-#     if any(An_sis_Bpist):
-#         if all(An_sis_Bpist): # kokonaan sisällä
-        
-#         elif An_sis_Bpist[]
-
-#     else:
-        
+    return True    
 
 
 
@@ -235,3 +225,13 @@ if __name__ == "__main__":
     rec2 = (0,3,2,0)
     rec3 = (0,2,3,-2)
     print(area(rec1,rec2,rec3)) # 16
+
+    #Test report
+    #Test failed when given the following input:
+    #[-1,2,2,-1]
+    #[-1,2,2,-1]
+    #[-1,2,2,-1]
+    #Expected output:
+    #9
+    #Your output:
+    #27
