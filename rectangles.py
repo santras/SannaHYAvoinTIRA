@@ -117,7 +117,7 @@ def osittelu(Nyv, Noa,xät,yyt):
         #print('ii',ii)
         for jj in range(len(yyt)-1):
             #print(jj)
-            Nkulmiot.append(((xät[ii],yyt[jj+1]),(xät[ii+1],yyt[jj])))
+            Nkulmiot.append([ (xät[ii],yyt[jj+1]),(xät[ii+1],yyt[jj]) ])
     
 
     return Nkulmiot
@@ -139,10 +139,19 @@ def suurimman_ulkopuolella(Avy,Aoa,Bvy,Boa,Cvy,Coa):
     if not leikkaa:
         print('hep')
         # onko B A:n sisällä?
-        if not (onko_piste_sis(Bvy,Avy,Aoa)):
+        if not (onko_piste_sis(Bvy,Avy,Aoa)):   # Tämä pistettä - onko sama kuin kulmio?
             B_ala=ala(Bvy,Boa)
     else:
-      osittelu(Bvy,Boa,leikkaajat_x, leikkaajat_y)  
+        uudet_kulmiot=osittelu(Bvy,Boa,leikkaajat_x, leikkaajat_y)
+        for ii in range(len(uudet_kulmiot)):
+            print(uudet_kulmiot[ii])
+            sisallako = False
+            sisallako = onko_piste_sis(uudet_kulmiot[ii][0],Avy,Aoa,True)
+            if sisallako:
+                sisallako = onko_piste_sis(uudet_kulmiot[ii][1],Avy,Aoa,True)
+            #if not sisallako:
+            #    B_ala=B_ala+ala(uudet_kulmiot[ii][0])
+
 
 
 
@@ -165,6 +174,7 @@ def area(rec1, rec2, rec3):
     #piste3oa =  (rec3[2],rec3[3])
 
     ala1=ala((rec1[0],rec1[1]),(rec1[2],rec1[3]))
+    #print((rec1[0],rec1[1]),(rec1[2],rec1[3]))
     ala2=ala((rec2[0],rec2[1]),(rec2[2],rec2[3]))
     ala3=ala((rec3[0],rec3[1]),(rec3[2],rec3[3]))
 
