@@ -86,29 +86,44 @@ def leikkaako(Ivy, Ioa, Pvy, Poa):
     leikkaa = False
     leikkaja_x=[]
     leikkaaja_y=[]
-
+    #print('jei',Ivy[0], Ioa[0], Pvy[0],Poa[0])
+    #print('jei2',Ivy[1], Ioa[1], Pvy[1],Poa[1])
+    
     if Ivy[0]<Poa[0] and Ivy[0]>Pvy[0]:
         leikkaa =True
         leikkaja_x.append(Ivy[0])
     if Ioa[0]<Poa[0] and Ioa[0]>Pvy[0]:
         leikkaa = True
         leikkaja_x.append(Ioa[0])
-    if Ivy[1]<Pvy[1] and Ivy[1]<Poa[1]:
+    if Ivy[1]<Pvy[1] and Ivy[1]>Poa[1]:
         leikkaa = True
         leikkaaja_y.append(Ivy[1])
-    if Ioa[1]<Pvy[1] and Ioa[1]<Poa[1]:
+    if Ioa[1]<Pvy[1] and Ioa[1]>Poa[1]:
         leikkaa = True
         leikkaaja_y.append(Ioa[1])
 
-    return leikkaa, leikkaja_x, leikkaja_y
+    return leikkaa, leikkaja_x, leikkaaja_y
 
 def suurimman_ulkopuolella(Avy,Aoa,Bvy,Boa,Cvy,Coa):
     #Leikkaako A:n sivut pienempää nelikulmiota?
-        # Jos ei onko se isomman sisässä vai ulkopuolella?
+        # Jos ei onko se isomman sisässä vai ulkopuolella?  Paitsi että ulkona voi olla niin että leikkaa?
             # Jos ulkona -> lisää kokonaan ala
             # Jos sisällä -> älä lisää mitään
         # Jos leikkaa -> Pistä pienempi osiin ja katso osille edellinen (osia 2-4)
     # C:lle tarkista sekä B:n että A:n leikkaukset
+    
+    # Testataan A ja B 
+    B_ala=0
+    C_ala=0
+
+    (leikkaa,leikkaajat_x,leikkaajat_y)=leikkaako(Avy,Aoa,Bvy,Boa)
+    if not leikkaa:
+        print('hep')
+        # onko B A:n sisällä?
+        if not (onko_piste_sis(Bvy,Avy,Aoa)):
+            B_ala=ala(Bvy,Boa)
+    else:
+        
 
 
 
@@ -138,7 +153,7 @@ def area(rec1, rec2, rec3):
 
     Alat = [ala1,ala2,ala3]
     jarjestys = sorted(range(len(Alat)), key=lambda k: Alat[k],reverse=True)
-    #print(Jarjestys, Alat)
+    #print(jarjestys, Alat)
 
 
     if jarjestys[0]== 0:
@@ -155,6 +170,7 @@ def area(rec1, rec2, rec3):
         if jarjestys[1] == 0:
             Yhteisala= ala3 + suurimman_ulkopuolella((rec3[0],rec3[1]),(rec3[2],rec3[3]),(rec1[0],rec1[1]),(rec1[2],rec1[3]),(rec2[0],rec2[1]),(rec2[2],rec2[3]))
         else:
+           # print('taal')
             Yhteisala= ala3 + suurimman_ulkopuolella((rec3[0],rec3[1]),(rec3[2],rec3[3]),(rec2[0],rec2[1]),(rec2[2],rec2[3]),(rec1[0],rec1[1]),(rec1[2],rec1[3]))
 
 
