@@ -104,6 +104,25 @@ def leikkaako(Ivy, Ioa, Pvy, Poa):
 
     return leikkaa, leikkaja_x, leikkaaja_y
 
+def osittelu(Nyv, Noa,xät,yyt):
+    xät.append(Nyv[0])
+    xät.append(Noa[0])
+    yyt.append(Nyv[1])
+    yyt.append(Noa[1])
+    xät = sorted(set(xät))
+    yyt = sorted(set(yyt))
+    Nkulmiot=[]
+
+    for ii in range(len(xät)-1):
+        #print('ii',ii)
+        for jj in range(len(yyt)-1):
+            #print(jj)
+            Nkulmiot.append(((xät[ii],yyt[jj+1]),(xät[ii+1],yyt[jj])))
+    
+
+    return Nkulmiot
+    #print(Nkulmiot, xät,yyt, len(Nkulmiot))
+
 def suurimman_ulkopuolella(Avy,Aoa,Bvy,Boa,Cvy,Coa):
     #Leikkaako A:n sivut pienempää nelikulmiota?
         # Jos ei onko se isomman sisässä vai ulkopuolella?  Paitsi että ulkona voi olla niin että leikkaa?
@@ -123,7 +142,7 @@ def suurimman_ulkopuolella(Avy,Aoa,Bvy,Boa,Cvy,Coa):
         if not (onko_piste_sis(Bvy,Avy,Aoa)):
             B_ala=ala(Bvy,Boa)
     else:
-        
+      osittelu(Bvy,Boa,leikkaajat_x, leikkaajat_y)  
 
 
 
