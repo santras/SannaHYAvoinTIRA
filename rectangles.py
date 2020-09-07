@@ -138,9 +138,11 @@ def suurimman_ulkopuolella(Avy,Aoa,Bvy,Boa,Cvy,Coa):
         for ii in range(len(uudet_kulmiot)):
             #print(uudet_kulmiot[ii][0],uudet_kulmiot[ii][1])
             sisallako = False
-            sisallako = onko_piste_sis(uudet_kulmiot[ii][0],Avy,Aoa,True)
-            if sisallako:
-                sisallako = onko_piste_sis(uudet_kulmiot[ii][1],Avy,Aoa,True)
+            sisallako = nelikulmio_sisalla(Avy,Aoa,uudet_kulmiot[ii][0],uudet_kulmiot[ii][1])
+
+            #sisallako = onko_piste_sis(uudet_kulmiot[ii][0],Avy,Aoa,True)
+            #if sisallako:
+            #    sisallako = onko_piste_sis(uudet_kulmiot[ii][1],Avy,Aoa,True)
             if not sisallako:
                 B_ala=B_ala+ala(uudet_kulmiot[ii][0],uudet_kulmiot[ii][1])
 
@@ -154,19 +156,31 @@ def suurimman_ulkopuolella(Avy,Aoa,Bvy,Boa,Cvy,Coa):
         # onko C A:n sisällä?
         #if not (onko_piste_sis(Cvy,Avy,Aoa)):   # Tämä pistettä - onko sama kuin kulmio?
         #    C_ala=ala(Cvy,Coa)
-        if not (nelikulmio_sisalla(Avy,Aoa,Bvy,Boa)):
-            B_ala=ala(Bvy,Boa)
+        if not (nelikulmio_sisalla(Avy,Aoa,Cvy,Coa)):
+            C_ala=ala(Cvy,Coa)
     else:
         uudet_kulmiot=osittelu(Cvy,Coa,leikkaajat_x, leikkaajat_y)
         for ii in range(len(uudet_kulmiot)):
             #print(uudet_kulmiot[ii][0],uudet_kulmiot[ii][1])
             sisallako = False
-            sisallako = onko_piste_sis(uudet_kulmiot[ii][0],Avy,Aoa,True)
-            if sisallako:
-                sisallako = onko_piste_sis(uudet_kulmiot[ii][1],Avy,Aoa,True)
+            sisallako = nelikulmio_sisalla(Avy,Aoa,uudet_kulmiot[ii][0],uudet_kulmiot[ii][1])
+            #sisallako = onko_piste_sis(uudet_kulmiot[ii][0],Avy,Aoa,True)
+            #if sisallako:
+            #    sisallako = onko_piste_sis(uudet_kulmiot[ii][1],Avy,Aoa,True)
             if not sisallako:
-                C_ala=C_ala+ala(uudet_kulmiot[ii][0],uudet_kulmiot[ii][1])
-
+                #C_ala=C_ala+ala(uudet_kulmiot[ii][0],uudet_kulmiot[ii][1])  ################################# tassa
+                #Testataan vielä B ja C yhteiset
+                (cb_leikkaa,cb_leikkaajat_x,cb_leikkaajat_y)=leikkaako(Bvy,Boa,uudet_kulmiot[ii][0],uudet_kulmiot[ii][1]))
+                if not cb_leikkaa:
+                    if not (nelikulmio_sisalla(Bvy,Boa,Bvy,Boa)):
+                        C_ala=C_ala+ala(uudet_kulmiot[ii][0],uudet_kulmiot[ii][1])
+                else:
+                    uudet_kulmiot_cb = osittelu(uudet_kulmiot[ii][0],uudet_kulmiot[ii][1],cb_leikkaajat_x, cb_leikkaajat_y)   
+                    for ii in range(len(uudet_kulmiot_cb)):
+                        sisalla_pieni =False
+                         sisallako = nelikulmio_sisalla(Bvy,Boa,uudet_kulmiot_cb[ii][0],uudet_kulmiot_cb[ii][1])
+                         if not sisallako:
+                              C_ala=C_ala+ala(uudet_kulmiot_cb[ii][0],uudet_kulmiot_cb[ii][1])
 
     #print(C_ala)
 
@@ -225,9 +239,9 @@ def area(rec1, rec2, rec3):
 
 
 if __name__ == "__main__":
-    rec1 =(-1,2,2,-1) #(-1,1,1,-1)  # vas ylänurkka, oik alanurkka
-    rec2 =(-1,2,2,-1) #(0,3,2,0)
-    rec3 =(-1,2,2,-1) #(0,2,3,-2)
+    rec1 =(-1,1,1,-1)  # vas ylänurkka, oik alanurkka
+    rec2 =(0,3,2,0)
+    rec3 =(0,2,3,-2)
     print(area(rec1,rec2,rec3)) # 16
 
     #Test report
