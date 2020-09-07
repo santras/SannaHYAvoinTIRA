@@ -79,12 +79,16 @@ def testaa_leikkaukset(Eka_vy,Eka_oa,Toka_vy,Toka_oa, cb_testi=False, B_vy=(0,0)
 
     Toka_ala = 0
     (leikkaa,leikkaajat_x,leikkaajat_y)=leikkaako(Eka_vy,Eka_oa,Toka_vy,Toka_oa)
-    if not leikkaa:     
+    #print('leikkaa',leikkaa,leikkaajat_x, leikkaajat_y)
+    if not leikkaa:
+        #print('täällä',cb_testi,Eka_vy,Eka_oa,Toka_vy,Toka_oa)     
         if not (nelikulmio_sisalla(Eka_vy,Eka_oa,Toka_vy,Toka_oa)):
             Toka_ala = ala(Toka_vy,Toka_oa)
-
+            #print('ala', Toka_ala)
     else:
+        #print('nyt taalla',cb_testi,Eka_vy,Eka_oa,Toka_vy,Toka_oa,B_vy, B_oa)
         uudet_kulmiot=osittelu(Toka_vy,Toka_oa,leikkaajat_x, leikkaajat_y)
+        #print('uudet kulmiot', uudet_kulmiot)
         for ii in range(len(uudet_kulmiot)):
             sisallako = False
             sisallako = nelikulmio_sisalla(Eka_vy,Eka_oa,uudet_kulmiot[ii][0],uudet_kulmiot[ii][1])
@@ -92,7 +96,8 @@ def testaa_leikkaukset(Eka_vy,Eka_oa,Toka_vy,Toka_oa, cb_testi=False, B_vy=(0,0)
                 if not cb_testi:
                     Toka_ala = Toka_ala + ala(uudet_kulmiot[ii][0],uudet_kulmiot[ii][1])
                 else:
-                    Toka_ala = testaa_leikkaukset(B_vy, B_oa,uudet_kulmiot[ii][0],uudet_kulmiot[ii][1])      
+                    #print('konfused',B_vy, B_oa,uudet_kulmiot[ii][0],uudet_kulmiot[ii][1])
+                    Toka_ala = Toka_ala+testaa_leikkaukset(B_vy, B_oa,uudet_kulmiot[ii][0],uudet_kulmiot[ii][1])      
     
     return Toka_ala  
 
@@ -104,6 +109,7 @@ def suurimman_ulkopuolella(Avy,Aoa,Bvy,Boa,Cvy,Coa):
     # Testataan A ja B 
     B_ala=0
     C_ala=0
+    #print(Avy,Aoa,Bvy,Boa,Cvy,Coa)
 
     if (nelikulmio_sisalla(Avy,Aoa,Bvy,Boa)):
         B_ala=0
@@ -112,13 +118,16 @@ def suurimman_ulkopuolella(Avy,Aoa,Bvy,Boa,Cvy,Coa):
     
     # Testataan A ja C
     if (nelikulmio_sisalla(Avy,Aoa,Cvy,Coa)):
+        #print('test1')
         C_ala = 0
     elif (nelikulmio_sisalla(Bvy,Boa,Cvy,Coa)):
+        #print('test2')
         C_ala = 0
     else:
+        #print('test3')
         C_ala=testaa_leikkaukset(Avy,Aoa,Cvy,Coa,True, Bvy,Boa)
 
-   
+    #print(B_ala,C_ala)
     return B_ala+C_ala
 
 
@@ -145,6 +154,7 @@ def area(rec1, rec2, rec3):
     Alat = [ala1,ala2,ala3]
     #print(Alat)
     jarjestys = sorted(range(len(Alat)), key=lambda k: Alat[k],reverse=True)
+    #print(jarjestys)
     
 
 
@@ -176,5 +186,9 @@ if __name__ == "__main__":
     rec2 =(0,3,2,0)
     rec3 =(0,2,3,-2)
     print(area(rec1,rec2,rec3)) # 16
+    #rec1 =(-1,1,1,-1)  # vas ylänurkka, oik alanurkka
+    #rec2 =(0,3,2,0)
+    #rec3 =(0,2,3,-2)
+   
 
    
