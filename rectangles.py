@@ -20,7 +20,7 @@ def onko_piste_sis(piste,nkulmio_vy,nkulmio_oa, reunalla_mukana=False):
                 #print("hei")
     return onko
       
-def nelikulmio_sisalla(Eka_vy,Eka_oa,Toka_vy_Toka_oa):
+def nelikulmio_sisalla(Eka_vy,Eka_oa,Toka_vy,Toka_oa):
     #onko samat
     #onko sisäkkäin Toka Ekan sisällä
     sisakkain= False
@@ -31,7 +31,7 @@ def nelikulmio_sisalla(Eka_vy,Eka_oa,Toka_vy_Toka_oa):
         if Toka_vy[1]<=Eka_vy[1] and Toka_oa[1]>= Eka_oa[1]:
             sisakkain = True
 
-    return True    
+    return sisakkain  
 
 
 
@@ -129,7 +129,9 @@ def suurimman_ulkopuolella(Avy,Aoa,Bvy,Boa,Cvy,Coa):
     if not leikkaa:
         #print('hep')
         # onko B A:n sisällä?
-        if not (onko_piste_sis(Bvy,Avy,Aoa)):   # Tämä pistettä - onko sama kuin kulmio?
+        #if not (onko_piste_sis(Bvy,Avy,Aoa)):   # Tämä pistettä - onko sama kuin kulmio?
+        #    B_ala=ala(Bvy,Boa)
+        if not (nelikulmio_sisalla(Avy,Aoa,Bvy,Boa)):
             B_ala=ala(Bvy,Boa)
     else:
         uudet_kulmiot=osittelu(Bvy,Boa,leikkaajat_x, leikkaajat_y)
@@ -150,8 +152,10 @@ def suurimman_ulkopuolella(Avy,Aoa,Bvy,Boa,Cvy,Coa):
     if not leikkaa:
         #print('hep')
         # onko C A:n sisällä?
-        if not (onko_piste_sis(Cvy,Avy,Aoa)):   # Tämä pistettä - onko sama kuin kulmio?
-            C_ala=ala(Cvy,Coa)
+        #if not (onko_piste_sis(Cvy,Avy,Aoa)):   # Tämä pistettä - onko sama kuin kulmio?
+        #    C_ala=ala(Cvy,Coa)
+        if not (nelikulmio_sisalla(Avy,Aoa,Bvy,Boa)):
+            B_ala=ala(Bvy,Boa)
     else:
         uudet_kulmiot=osittelu(Cvy,Coa,leikkaajat_x, leikkaajat_y)
         for ii in range(len(uudet_kulmiot)):
@@ -164,7 +168,7 @@ def suurimman_ulkopuolella(Avy,Aoa,Bvy,Boa,Cvy,Coa):
                 C_ala=C_ala+ala(uudet_kulmiot[ii][0],uudet_kulmiot[ii][1])
 
 
-    print(C_ala)
+    #print(C_ala)
 
 
 
@@ -221,9 +225,9 @@ def area(rec1, rec2, rec3):
 
 
 if __name__ == "__main__":
-    rec1 = (-1,1,1,-1)  # vas ylänurkka, oik alanurkka
-    rec2 = (0,3,2,0)
-    rec3 = (0,2,3,-2)
+    rec1 =(-1,2,2,-1) #(-1,1,1,-1)  # vas ylänurkka, oik alanurkka
+    rec2 =(-1,2,2,-1) #(0,3,2,0)
+    rec3 =(-1,2,2,-1) #(0,2,3,-2)
     print(area(rec1,rec2,rec3)) # 16
 
     #Test report
