@@ -9,26 +9,27 @@ def count(ss):
     for ii in range (len(setti)):
         pituudet[setti[ii]] = 0
 
-    print(pituudet)
+    #print(pituudet)
     laskin = 1
     for ii in range(len(ss)):
         if ii == (len(ss)-1):
-            #print('vika')
+            #print('vika kierros')
+            if pituudet[ss[ii]]<= laskin:
+                    pituudet[ss[ii]] =laskin
         else:
-
             if ss[ii] == ss[ii+1]:
                 laskin +=1
-                #print('kierros')
             else:
-                print(pituudet[ss[ii]])
-                #if pituudet[ii]<= laskin
+                #print(pituudet[ss[ii]])
+                if pituudet[ss[ii]]<= laskin:
+                    pituudet[ss[ii]] =laskin
                 laskin = 1
         
-
+    print(pituudet)
     
 
 
 if __name__ == "__main__":
-    print(count("aaa")) # 6
-    #print(count("abbbcaa")) # 11
+    #print(count("aaa")) # 6
+    print(count("abbbcaa")) # 11
     #print(count("abcde")) # 5
