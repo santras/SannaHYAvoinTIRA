@@ -50,8 +50,27 @@ def count_uus2(nn):             ## Tässä kökköä
             if ii < jj:
                 return tekstina 
 
-    return tekstina        
+    return tekstina    
 
+def count4 (nn):
+    laskin = 0
+
+    for ii in range (nn-3,math.floor(nn/3),-1):    
+        #print('iso',ii)
+        toinen_max = (nn-ii-1)
+        for jj in range(toinen_max,1,-1):
+            #print('toka',jj)
+            eka=nn-jj-ii
+            #print('eka',eka)
+            #print(eka,jj,ii)
+            if eka >= jj:
+                break
+            if jj >= ii:
+                continue
+            print(eka,jj,ii)
+            laskin += 1 
+
+    print (laskin)
 
 
 def count(nn):
@@ -72,16 +91,19 @@ def count(nn):
                     jutut = sorted([ii,jj,kolmas])
                     stringi = str(jutut[0])+' '+str(jutut[1])+' '+str(jutut[2])
                     tekstina.append(stringi)
+                    #print(stringi)
                     laskin += 1
                    
 
     #print (kaytetyt)
-    tekstina_uus = count_uus2(nn)
-    print(tekstina_uus)
-    for ii in range(len(tekstina)):
-        if tekstina[ii] not in tekstina_uus:
-            print ('puuttuu',tekstina[ii])
-    print(len(tekstina_uus),len(tekstina))
+    #tekstina_uus = count_uus2(nn)
+    #print(tekstina_uus)
+    #for ii in range(len(tekstina)):
+    #    if tekstina[ii] not in tekstina_uus:
+    #        print ('puuttuu',tekstina[ii])
+    #print(len(tekstina_uus),len(tekstina))
+    count4(nn)
+    #print(tekstina)
 
     return laskin
 
