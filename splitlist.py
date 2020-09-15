@@ -25,12 +25,13 @@ def count(lista):
         else:
             isot [ii] = min(isot[ii+1],lista[ii])
 
-    print(lista)
-    print(pikkuset)
-    print(isot)
+    #print(lista)
+    #print(pikkuset)
+    #print(isot)
     laskuri = 0
     
-    for ii in range (1,ll-1):
+    for ii in range (1,ll):
+        #print(ii,pikkuset[ii-1],isot[ii])
         if pikkuset[ii-1]<isot[ii]:
             laskuri += 1
             #print(ii)
@@ -40,6 +41,6 @@ def count(lista):
 
 
 if __name__ == "__main__":
-    #print(count([1,2,3,4,5])) # 4
-    #print(count([5,4,3,2,1])) # 0
+    print(count([1,2,3,4,5])) # 4
+    print(count([5,4,3,2,1])) # 0
     print(count([2,1,2,5,7,6,9])) # 3
