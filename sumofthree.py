@@ -28,24 +28,36 @@ def count_uus(nn):                       # isoin min 12 max 27 (n-3) # pienin 1-
     return laskin    
 
 
-def count_uus2(nn):
-    kerroslaskin = 1
+def count_uus2(nn):             ## Tässä kökköä
+    
+    tekstina = []
     laskin = 0
 
     for ii in range (nn-3,math.floor(nn/3),-1): 
         toinen_luku= (nn-ii-1)
-        if ii <= toinen_luku:
-            return laskin
-        laskin += kerroslaskin
-        if ii % 2 ==0:                          # Parillisen luvun jälkeen kerroslaskuriin tulee yksi lisää                                         
-            kerroslaskin += 1
+            
+           # return laskin
         print(1,toinen_luku,ii)
+        tekstina.append(str(1)+' '+str(toinen_luku)+' '+str(ii))
+        for jj in range (toinen_luku,1,-1):
+            if (nn-jj-ii) >= jj:
+                break
+            if jj == nn-jj-ii:
+                continue
+            #print(nn-jj-ii,jj)
+            laskin +=1
+            tekstina.append(str(nn-jj-ii)+' '+str(jj)+' '+str(ii))
+            if ii < jj:
+                return tekstina 
+
+    return tekstina        
 
 
 
 def count(nn):
 
     kaytetyt = []
+    tekstina = []
     laskin = 0
 
     for ii in range (1,nn):
@@ -57,14 +69,24 @@ def count(nn):
                 #print ((sorted([ii,jj, kolmas])[1]))
                 if sorted([ii,jj, kolmas]) not in kaytetyt :
                     kaytetyt.append(sorted([ii,jj,kolmas]))
+                    jutut = sorted([ii,jj,kolmas])
+                    stringi = str(jutut[0])+' '+str(jutut[1])+' '+str(jutut[2])
+                    tekstina.append(stringi)
                     laskin += 1
                    
 
     #print (kaytetyt)
+    tekstina_uus = count_uus2(nn)
+    print(tekstina_uus)
+    for ii in range(len(tekstina)):
+        if tekstina[ii] not in tekstina_uus:
+            print ('puuttuu',tekstina[ii])
+    print(len(tekstina_uus),len(tekstina))
+
     return laskin
 
 
 if __name__ == "__main__":
     #print(count(8)) # 2
-    print(count_uus2(30)) # 61
+    print(count(30)) # 61
     #print(count(1337)) # 148296
