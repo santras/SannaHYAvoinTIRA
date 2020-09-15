@@ -32,12 +32,14 @@ def count (nn):
     testilaskin =0
     kerroslaskin = 1
 
-    apu math.floor(nn/4)
+    apu = math.floor((nn)/4)
 
-    if nn%2 == 0                                                    # Alustetaan laskin puoleen väliin
+    if nn%4 == 0 :                                                   # Alustetaan laskin puoleen väliin
         laskin = apu* (apu+1)
+        #print('tasan',laskin)
     else:
         laskin = math.floor((apu*(apu+1))/2) + math.floor(((apu-1)*(apu))/2)
+        print(laskin)
 
 
     for ii in range (math.floor(nn/2),math.floor(nn/3),-1):    
@@ -58,7 +60,7 @@ def count (nn):
             #print('eka',eka)
             #print(eka,jj,ii)
             if eka >= jj:
-                print('Kerros',ii,jj,laskin2)
+                #print('Kerros',ii,jj,laskin2)
                 break
             if jj >= ii:
                 continue
@@ -72,8 +74,8 @@ def count (nn):
 
 if __name__ == "__main__":
     #print(count(8)) # 2
-    #print(count(30)) # 61
-    print(count(32))
+    print(count(30)) # 61
+    #print(count(32))
     #print(count(50))
     #print(count(1337)) # 148296
     #print (count(663307073)) # iso testi feilas
