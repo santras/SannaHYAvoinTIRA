@@ -52,7 +52,7 @@ def count_uus2(nn):             ## Tässä kökköä
 
     return tekstina    
 
-def count4 (nn):
+def count (nn):
     laskin = 0
 
     for ii in range (nn-3,math.floor(nn/3),-1):    
@@ -73,7 +73,7 @@ def count4 (nn):
     return laskin
 
 
-def count(nn):
+def count_test(nn):
 
     kaytetyt = []
     tekstina = []
@@ -109,6 +109,6 @@ def count(nn):
 
 
 if __name__ == "__main__":
-    print(count4(8)) # 2
-    print(count4(30)) # 61
-    print(count4(1337)) # 148296
+    print(count(8)) # 2
+    print(count(30)) # 61
+    print(count(1337)) # 148296
