@@ -25,7 +25,23 @@ def count_uus(nn):                       # isoin min 12 max 27 (n-3) # pienin 1-
         
 
 
-    return laskin      
+    return laskin    
+
+
+def count_uus2(nn):
+    kerroslaskin = 1
+    laskin = 0
+
+    for ii in range (nn-3,math.floor(nn/3),-1): 
+        toinen_luku= (nn-ii-1)
+        if ii <= toinen_luku:
+            return laskin
+        laskin += kerroslaskin
+        if ii % 2 ==0:                          # Parillisen luvun jälkeen kerroslaskuriin tulee yksi lisää                                         
+            kerroslaskin += 1
+        print(1,toinen_luku,ii)
+
+
 
 def count(nn):
 
@@ -50,5 +66,5 @@ def count(nn):
 
 if __name__ == "__main__":
     #print(count(8)) # 2
-    print(count_uus(30)) # 61
+    print(count_uus2(30)) # 61
     #print(count(1337)) # 148296
