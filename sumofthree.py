@@ -67,10 +67,10 @@ def count4 (nn):
                 break
             if jj >= ii:
                 continue
-            print(eka,jj,ii)
+            #print(eka,jj,ii)
             laskin += 1 
 
-    print (laskin)
+    return laskin
 
 
 def count(nn):
@@ -109,6 +109,6 @@ def count(nn):
 
 
 if __name__ == "__main__":
-    #print(count(8)) # 2
-    print(count(30)) # 61
-    #print(count(1337)) # 148296
+    print(count4(8)) # 2
+    print(count4(30)) # 61
+    print(count4(1337)) # 148296
