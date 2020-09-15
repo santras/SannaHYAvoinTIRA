@@ -50,7 +50,7 @@ def count (nn):
                 #print('eka',eka)
                 #print(eka,jj,ii)
                 if eka >= jj:
-                    #print('Kerros',ii,jj,laskin2)
+                    print('Kerros',ii,jj,laskin2)
                     break
                 if jj >= ii:
                     continue
@@ -64,7 +64,7 @@ def count (nn):
 
 if __name__ == "__main__":
     #print(count(8)) # 2
-    #print(count(30)) # 61
+    print(count(30)) # 61
     #print(count(50))
     #print(count(1337)) # 148296
     #print (count(663307073)) # iso testi feilas
