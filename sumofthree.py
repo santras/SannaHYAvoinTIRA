@@ -68,3 +68,4 @@ if __name__ == "__main__":
     #print(count(50))
     #print(count(1337)) # 148296
     #print (count(663307073)) # iso testi feilas
+    #print(count(5)) # Testi feilas expected 0, my answer 1
