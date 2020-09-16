@@ -6,6 +6,7 @@
 
 
 def count(ss):
+    # Tämä laskee montako osajonoa alkaa ja loppuu samaan kirjaimeen
 
     kirjainlaskuri = {}
     paalaskuri = 0
