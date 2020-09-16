@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*- 
 
 #from array import array
+from time import time
 
 def hepanhyokimys(heppa,nn):
    
@@ -130,5 +131,7 @@ def count(nn):
 if __name__ == "__main__":
     print(count(3)) # 0
     print(count(4)) # 40
-    print(count(5)) # 184
-    
+    alku=time()
+    print(count(100)) # 184
+    loppu=time()
+    print(loppu-alku)
